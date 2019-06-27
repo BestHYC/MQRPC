@@ -19,21 +19,29 @@ using System.Text;
 /// </summary>
 namespace Framework.MQRPC.Transfers
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class TransferContentHeaders
     {
+        /// <summary>
+        /// 请求权限
+        /// </summary>
+        public String Authorization { get; set; }
         //
         // 摘要:
-        //     获取或设置 MQ 响应上的 Content-MD5 内容标头值。
+        //     获取或设置 MQ 响应上的 Uri数据。
         //
         // 返回结果:
-        //     MQ 响应上的 Content-MD5 内容标头值。
-        public byte[] ContentMD5 { get; set; }
-        //
-        // 摘要:
-        //     获取或设置 MQ 响应上的 Content-Location 内容标头值。
-        //
-        // 返回结果:
-        //     MQ 响应上的 Content-Location 内容标头值。
+        //     MQ 响应上的 Uri数据,也需要记录需要返回的记录值。
         public Uri ContentLocation { get; set; }
+        /// <summary>
+        /// 当前内容的长度
+        /// </summary>
+        public Int32 ContentLength { get; set; }
+        /// <summary>
+        /// 内容的类型
+        /// </summary>
+        public String ContentType { get; set; }
     }
 }

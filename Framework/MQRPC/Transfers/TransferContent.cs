@@ -15,11 +15,20 @@ using System.Text;
 =====================================================*/
 namespace Framework.MQRPC.Transfers
 {
+    /// <summary>
+    /// 目前已字符串进行传输,后期改为protof协议方式
+    /// </summary>
     public class TransferContent
     {
         /// <summary>
         /// 传输内容头信息
         /// </summary>
         public TransferContentHeaders Headers { get; }
+        public TransferRequest TransferRequest { get; }
+        public TransferResponse TransferResponse { get; }
+        /// <summary>
+        /// 传输的内容信息
+        /// </summary>
+        public String Content { get; }
     }
 }

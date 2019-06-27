@@ -6,7 +6,6 @@
 
   <ItemGroup>
     <Folder Include="MQRPC\Controllers\" />
-    <Folder Include="MQRPC\Implements\" />
     <Folder Include="MQRPC\Models\" />
     <Folder Include="MQRPC\Actions\" />
   </ItemGroup>
