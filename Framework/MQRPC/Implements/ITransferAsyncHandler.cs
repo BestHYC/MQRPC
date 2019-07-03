@@ -12,7 +12,7 @@ namespace Framework.MQRPC
         //
         // 参数:
         //   context:
-        //     System.Web.HttpContext 提供对内部服务器对象的引用的对象 (例如， Request, ，Response, ，Session, ，和
+        //     System.Web.ITransferAsyncHandler 提供对内部服务器对象的引用的对象 (例如， Request, ，Response, ，Session, ，和
         //     Server) 用于处理 HTTP 请求。
         //
         //   cb:

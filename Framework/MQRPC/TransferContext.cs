@@ -17,5 +17,7 @@ namespace Framework.MQRPC
 {
     public class TransferContext
     {
+        public TransferRequest TransferRequest { get; }
+        public TransferResponse TransferResponse { get; }
     }
 }

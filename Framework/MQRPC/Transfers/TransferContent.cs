@@ -20,15 +20,19 @@ namespace Framework.MQRPC.Transfers
     /// </summary>
     public class TransferContent
     {
+
+        public TransferContent()
+        {
+
+        }
         /// <summary>
         /// 传输内容头信息
         /// </summary>
         public TransferContentHeaders Headers { get; }
-        public TransferRequest TransferRequest { get; }
-        public TransferResponse TransferResponse { get; }
         /// <summary>
         /// 传输的内容信息
         /// </summary>
-        public String Content { get; }
+        public IDictionary<String, Object> Content { get; }
+        public IDictionary<String, Object> QueryString { get; }
     }
 }

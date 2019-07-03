@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 
@@ -16,7 +17,11 @@ namespace Framework.MQRPC
 {
     public class TransferApplication: ITransferAsyncHandler
     {
-        public TransferApplication()
+        /// <summary>
+        /// 通过profocal协议传输具体字段,依旧会以流的形式传值
+        /// </summary>
+        /// <param name="stream"></param>
+        public TransferApplication(Stream stream)
         {
         }
         public TransferRequest Request { get; }
