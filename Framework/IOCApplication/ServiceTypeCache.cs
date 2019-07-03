@@ -14,7 +14,7 @@ using System.Text;
  *
  * 修改者：         修改时间：       修改说明:
  * ==============================================================================*/
-namespace Framework.FeatureApplication
+namespace Framework.IOCApplication
 {
     public enum ServiceTypeEnum
     {
@@ -27,11 +27,15 @@ namespace Framework.FeatureApplication
         /// </summary>
         Transient = 1
     }
+    public interface IServiceCache
+    {
+        Object GetCache(IDictionary<Type, IServiceCache> typePairs);
+    }
     /// <summary>
     /// 此处只当做流程执行下去,具体请看AutoFac源码,此处只是对此源码做抽象改编
     /// 
     /// </summary>
-    public class ServiceTypeCache
+    public class ServiceTypeCache: IServiceCache
     {
         /// <summary>
         /// 保存当前类型
@@ -60,12 +64,12 @@ namespace Framework.FeatureApplication
         /// 如果有相同数量的构造器,选择最后一个构造器
         /// </summary>
         /// <returns></returns>
-        public Object GetObj(IDictionary<Type, ServiceTypeCache> typePairs)
+        public Object GetCache(IDictionary<Type, IServiceCache> typePairs)
         {
             if(_obj == null)
             {
                 List<Type> types = GetConstructor();
-                Object[] paramters = types.ConvertAll(item => typePairs[item].GetObj(typePairs)).ToArray();
+                Object[] paramters = types.ConvertAll(item => typePairs[item].GetCache(typePairs)).ToArray();
                 _obj = Activator.CreateInstance(_type, paramters);
             }
             if (_typeEnum == ServiceTypeEnum.Transient)

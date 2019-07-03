@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Framework.FeatureApplication
+namespace Framework.IOCApplication
 {
     public interface IServiceCollection
     {

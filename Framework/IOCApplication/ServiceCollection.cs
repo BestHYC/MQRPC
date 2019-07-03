@@ -13,7 +13,7 @@ using System.Text;
  *
  * 修改者：         修改时间：       修改说明:
  * ==============================================================================*/
-namespace Framework.FeatureApplication
+namespace Framework.IOCApplication
 {
     /// <summary>
     /// 通过特写
@@ -23,15 +23,10 @@ namespace Framework.FeatureApplication
         /// <summary>
         /// 单例保存
         /// </summary>
-        private ConcurrentDictionary<Type, ServiceTypeCache> _typePairs;
-        /// <summary>
-        /// 保存的所有对象,只创建一次对象,剩余就从这里获取,
-        /// </summary>
-        private ConcurrentDictionary<Type, Object> _objPairs;
+        private ConcurrentDictionary<Type, IServiceCache> _typePairs;
         public ServiceCollection()
         {
-            _typePairs = new ConcurrentDictionary<Type, ServiceTypeCache>();
-            _objPairs = new ConcurrentDictionary<Type, Object>();
+            _typePairs = new ConcurrentDictionary<Type, IServiceCache>();
         }
         /// <summary>
         /// 构建单例
@@ -105,7 +100,7 @@ namespace Framework.FeatureApplication
         /// <returns></returns>
         public IServiceProvider BuildServiceProvider()
         {
-            throw new NotImplementedException();
+            return new ServiceProvider(_typePairs);
         }
     }
 }

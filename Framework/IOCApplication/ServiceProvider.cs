@@ -12,7 +12,7 @@ using System.Text;
  *
  * 修改者：         修改时间：       修改说明:
  * ==============================================================================*/
-namespace Framework.FeatureApplication
+namespace Framework.IOCApplication
 {
     public interface IServiceProvider
     {
@@ -23,9 +23,20 @@ namespace Framework.FeatureApplication
     /// </summary>
     public class ServiceProvider : IServiceProvider
     {
+        private IDictionary<Type, IServiceCache> _cache;
+        public ServiceProvider(IDictionary<Type, IServiceCache> valuePairs)
+        {
+            _cache = valuePairs;
+        }
         public T GetRequiredService<T>()
         {
-            throw new NotImplementedException();
+            Type t = typeof(T);
+            IServiceCache service = null;
+            if (!_cache.TryGetValue(t, out service))
+            {
+                throw new Exception("获取参数对象没有注入");
+            }
+            return (T)service.GetCache(_cache);
         }
     }
 

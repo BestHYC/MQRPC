@@ -12,7 +12,7 @@ using System.Text;
  *
  * 修改者：         修改时间：       修改说明:
  * ==============================================================================*/
-namespace Framework.FeatureApplication
+namespace Framework.IOCApplication
 {
     public class FeatureCollection : IFeatureCollection
     {
