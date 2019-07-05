@@ -13,7 +13,7 @@ using System.Text;
  *
  * 修改者：         修改时间：       修改说明:
  * ==============================================================================*/
-namespace Framework.MQRPC.Transfers
+namespace Framework.MQRPC
 {
     /// <summary>
     /// 只是单纯做记录使用,不做任何判断

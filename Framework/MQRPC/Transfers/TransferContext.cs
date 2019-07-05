@@ -1,7 +1,4 @@
-﻿using Framework.MQRPC.Implements;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System;
 
 
 /* ==============================================================================
@@ -13,7 +10,7 @@ using System.Text;
  *
  * 修改者：         修改时间：       修改说明:
  * ==============================================================================*/
-namespace Framework.MQRPC.Transfers
+namespace Framework.MQRPC
 {
     public class TransferContext:TransferBaseContext
     {

@@ -1,9 +1,5 @@
-﻿using Framework.MQRPC.Implements;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
 
 
 /* ==============================================================================
@@ -15,7 +11,7 @@ using System.Text;
  *
  * 修改者：         修改时间：       修改说明:
  * ==============================================================================*/
-namespace Framework.MQRPC.Transfers
+namespace Framework.MQRPC
 {
     public class TransferApplication: ITransferAsyncHandler
     {

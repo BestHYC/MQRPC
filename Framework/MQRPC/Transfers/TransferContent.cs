@@ -13,7 +13,7 @@ using System.Text;
 * 修改时间:
 * 版本： @version 1.0
 =====================================================*/
-namespace Framework.MQRPC.Transfers
+namespace Framework.MQRPC
 {
     /// <summary>
     /// 目前已字符串进行传输,后期改为protof协议方式

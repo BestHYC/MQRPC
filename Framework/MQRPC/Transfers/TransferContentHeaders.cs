@@ -17,7 +17,7 @@ using System.Text;
 /// 此处尽量简单,因为包括请求内容长度确认,标头,语言之类,通过MQ去确认
 /// 后期如果需要可以添加
 /// </summary>
-namespace Framework.MQRPC.Transfers
+namespace Framework.MQRPC
 {
     /// <summary>
     /// 
