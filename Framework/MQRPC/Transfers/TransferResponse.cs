@@ -13,13 +13,18 @@ using System.Text;
  *
  * 修改者：         修改时间：       修改说明:
  * ==============================================================================*/
-namespace Framework.MQRPC
+namespace Framework.MQRPC.Transfers
 {
     /// <summary>
     /// 当前请求的返回值信息
     /// </summary>
     public sealed class TransferResponse
     {
+        public TransferCollection _collection;
+        public TransferResponse(TransferCollection collection)
+        {
+            _collection = collection;
+        }
         public Stream OutputStream { get; }
     }
 }

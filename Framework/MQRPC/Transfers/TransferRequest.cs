@@ -14,13 +14,18 @@ using System.Text;
  *
  * 修改者：         修改时间：       修改说明:
  * ==============================================================================*/
-namespace Framework.MQRPC
+namespace Framework.MQRPC.Transfers
 {
     /// <summary>
     /// 当前的请求集合解析
     /// </summary>
     public sealed class TransferRequest
     {
+        private TransferCollection _collection;
+        public TransferRequest(TransferCollection collection)
+        {
+            _collection = collection;
+        }
         /// <summary>
         /// 针对请求发起多种查询参数索引
         /// </summary>
@@ -33,13 +38,14 @@ namespace Framework.MQRPC
                 return Params[key];
             }
         }
-        public Stream InputStream { get; }
         public bool IsAuthenticated { get; }
         public string Path { get; }
         public NameValueCollection Params { get; }
+        public Uri UriReference { get; }
         public Uri Url { get; }
         public string UserHostAddress { get; }
         public string UserHostName { get; }
         public NameValueCollection QueryString { get; }
+        public NameValueCollection Headers { get; }
     }
 }

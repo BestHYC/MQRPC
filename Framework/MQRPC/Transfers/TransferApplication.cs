@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Framework.MQRPC.Implements;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
@@ -13,42 +15,28 @@ using System.Text;
  *
  * 修改者：         修改时间：       修改说明:
  * ==============================================================================*/
-namespace Framework.MQRPC
+namespace Framework.MQRPC.Transfers
 {
     public class TransferApplication: ITransferAsyncHandler
     {
+        private TransferCollection _TransferCollection;
         /// <summary>
-        /// 通过profocal协议传输具体字段,依旧会以流的形式传值
+        /// 内容会以二进制转为字符串的形式传值,
+        /// 通过profocal协议传输具体字段
+        /// content包含当前对象的所有值
+        /// 此方法内不做任何字段处理,只保存在dictionary中
         /// </summary>
-        /// <param name="stream"></param>
-        public TransferApplication(Stream stream)
+        /// <param name="content"></param>
+        public TransferApplication(String content)
         {
+            _TransferCollection = JsonConvert.DeserializeObject<TransferCollection>(content);
         }
-        public TransferRequest Request { get; }
-        public TransferResponse Response { get; }
-        public TransferContext Context { get; }
-        //
-        // 摘要:
-        //     作为执行的 HTTP 管道链中的第一个事件发生，当 ASP.NET 的请求做出响应。
-        public event EventHandler BeginRequest;
-        //
-        // 摘要:
-        //     当安全模块已建立的用户标识时出现.
-        public event EventHandler AuthenticateRequest;
-        //
-        // 摘要:
-        //     安全模块已验证用户身份验证时发生。
-        public event EventHandler AuthorizeRequest;
-        //
-        // 摘要:
-        //     ASP.NET 将内容发送到客户端之前发生。
-        public event EventHandler PreSendRequestContent;
-        //
-        // 摘要:
-        //     已释放与请求相关联的托管的对象时发生。
-        public event EventHandler RequestCompleted;
-
-        public IAsyncResult BeginProcessRequest(TransferContext context, AsyncCallback cb, object extraData)
+        public TransferBaseContext CreateContext()
+        {
+            TransferContext context = new TransferContext(_TransferCollection);
+            return context;
+        }
+        public IAsyncResult BeginProcessRequest(TransferBaseContext context, AsyncCallback cb, object extraData)
         {
             throw new NotImplementedException();
         }

@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Framework.MQRPC
+namespace Framework.MQRPC.Implements
 {
     public interface ITransferAsyncHandler
     {
+        TransferBaseContext CreateContext();
         //
         // 摘要:
         //     启动异步 HTTP 处理程序调用。
@@ -23,7 +24,7 @@ namespace Framework.MQRPC
         //
         // 返回结果:
         //     System.IAsyncResult 包含有关状态的进程的信息。
-        IAsyncResult BeginProcessRequest(TransferContext context, AsyncCallback cb, object extraData);
+        IAsyncResult BeginProcessRequest(TransferBaseContext context, AsyncCallback cb, object extraData);
         //
         // 摘要:
         //     在进程结束时，提供了异步处理 End 方法。
