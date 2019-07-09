@@ -1,11 +1,13 @@
-﻿using System;
+﻿using Framework.IOCApplication;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Framework.MQRPC
 {
-    public interface IStattupLoader
+    public interface IStartupLoader
     {
-        Action<IApplicationBuilder> GetConfigureDelegate(Type startupType);
+        Action GetConfigureDelegate(Type startupType);
+        Action<IServiceCollection> GetConfigureServices(Type startupType);
     }
 }

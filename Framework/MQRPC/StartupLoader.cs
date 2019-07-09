@@ -1,6 +1,9 @@
-﻿using System;
+﻿using Framework.IOCApplication;
+using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Text;
+using IServiceProvider = Framework.IOCApplication.IServiceProvider;
 
 
 /* ==============================================================================
@@ -14,11 +17,32 @@ using System.Text;
  * ==============================================================================*/
 namespace Framework.MQRPC
 {
-    public class StartupLoader : IStattupLoader
+    public class StartupLoader : IStartupLoader
     {
-        public Action<IApplicationBuilder> GetConfigureDelegate(Type startupType)
+        private IServiceProvider _provider;
+        public StartupLoader(IServiceProvider provider)
         {
-            return app => { startupType.GetMethod("Configure").Invoke(Activator.CreateInstance(startupType), new Object[] { app }); };
+            _provider = provider;
+        }
+        /// <summary>
+        /// 调用注入的方法
+        /// </summary>
+        /// <param name="startupType"></param>
+        /// <returns></returns>
+        public Action GetConfigureDelegate(Type startupType)
+        {
+            MethodInfo info = startupType.GetMethod("Configure");
+            ParameterInfo[] parameters = info.GetParameters();
+            Object[] obj = new Object[parameters.Length];
+            for(Int32 i = 0; i < parameters.Length; i++)
+            {
+                obj[i] = _provider.GetRequiredService(parameters[i].ParameterType);
+            }
+            return  ()=> { startupType.GetMethod("Configure").Invoke(Activator.CreateInstance(startupType), obj); };
+        }
+        public Action<IServiceCollection> GetConfigureServices(Type startupType)
+        {
+            return service => { startupType.GetMethod("ConfigureServices").Invoke(Activator.CreateInstance(startupType), new Object[] { service }); };
         }
     }
 }

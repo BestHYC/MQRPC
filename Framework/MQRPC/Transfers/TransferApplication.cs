@@ -14,7 +14,7 @@ using System.Threading.Tasks;
  * ==============================================================================*/
 namespace Framework.MQRPC
 {
-    public class TransferApplication: ITransferAsyncHandler, ITransferApplication<TransferBaseContext>
+    public class TransferApplication: ITransferApplication<TransferBaseContext>
     {
         private TransferCollection _TransferCollection;
         /// <summary>
@@ -34,13 +34,13 @@ namespace Framework.MQRPC
             return context;
         }
         /// <summary>
-        /// 创建对象
+        /// 处理对象
         /// </summary>
         /// <param name="context"></param>
         /// <param name="cb"></param>
         /// <param name="extraData"></param>
         /// <returns></returns>
-        public Task ProcessRequestAsync(TransferBaseContext context)
+        public Task ProcessRequestAsync(IHostApplication<TransferBaseContext> context)
         {
             throw new NotImplementedException();
         }

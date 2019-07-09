@@ -23,22 +23,22 @@ namespace Framework.MQRPC
         public TransferHostBuilder()
         {
             services = new ServiceCollection()
-                .AddTransient<IStattupLoader, StartupLoader>()
-                .AddTransient<IApplicationBuilderFactory, ApplicationBuilderFactory>();
+                .AddTransient<IStartupLoader, StartupLoader>()
+                .AddTransient<IApplicationBuilder, ApplicationBuilder>();
         }
         public ITransferHost Build()
         {
-            throw new NotImplementedException();
+            return new TransferHost(services, _startType);
         }
-
         public ITransferHostBuilder UserServer(IServerFactory factory)
         {
-            throw new NotImplementedException();
+            services.AddSingleton<IServerFactory>(factory);
+            return this;
         }
-
         public ITransferHostBuilder UserStartup(Type startupType)
         {
-            throw new NotImplementedException();
+            this._startType = startupType;
+            return this;
         }
     }
 }

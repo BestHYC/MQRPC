@@ -17,6 +17,7 @@ namespace Framework.IOCApplication
     public interface IServiceProvider
     {
         T GetRequiredService<T>();
+        Object GetRequiredService(Type type);
     }
     /// <summary>
     /// 
@@ -37,6 +38,16 @@ namespace Framework.IOCApplication
                 throw new Exception("获取参数对象没有注入");
             }
             return (T)service.GetCache(_cache);
+        }
+        
+        public object GetRequiredService(Type type)
+        {
+            IServiceCache service = null;
+            if (!_cache.TryGetValue(type, out service))
+            {
+                throw new Exception("获取参数对象没有注入");
+            }
+            return service.GetCache(_cache);
         }
     }
 

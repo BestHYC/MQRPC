@@ -6,6 +6,6 @@ namespace Framework.MQRPC
 {
     public interface ITransferServer
     {
-        void Start<TContext>(ITransferApplication<TContext> application);
+        void Start<TContext>(IHostApplication<TContext> application);
     }
 }

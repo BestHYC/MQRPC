@@ -19,15 +19,25 @@ namespace Framework.MQRPC
     public class TransferHost : ITransferHost
     {
         private IServiceProvider serviceProvider;
+        private IServiceCollection serviceCollection;
         private Type startupType;
         public TransferHost(IServiceCollection appServices, Type startupType)
         {
             this.serviceProvider = appServices.BuildServiceProvider();
             this.startupType = startupType;
+            serviceCollection = appServices;
         }
         public void Run()
         {
-            throw new NotImplementedException();
+            IApplicationBuilder application = serviceProvider.GetRequiredService<IApplicationBuilder>();
+            IStartupLoader start = serviceProvider.GetRequiredService<IStartupLoader>();
+            //注入中间件
+            start.GetConfigureDelegate(startupType)();
+            //注入服务
+            start.GetConfigureServices(startupType)(serviceCollection);
+            ITransferServer transfer = 
+                serviceProvider.GetRequiredService<IServerFactory>().Create();
+            transfer.Start(new HostApplication(application.Build()));
         }
     }
 }
