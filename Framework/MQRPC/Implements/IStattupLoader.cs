@@ -4,8 +4,8 @@ using System.Text;
 
 namespace Framework.MQRPC
 {
-    public interface ITransferApplication<TContext>
+    public interface IStattupLoader
     {
-        TContext CreateContext();
+        Action<IApplicationBuilder> GetConfigureDelegate(Type startupType);
     }
 }

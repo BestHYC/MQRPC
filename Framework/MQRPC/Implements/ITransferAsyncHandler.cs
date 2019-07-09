@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Framework.MQRPC
 {
@@ -24,14 +25,6 @@ namespace Framework.MQRPC
         //
         // 返回结果:
         //     System.IAsyncResult 包含有关状态的进程的信息。
-        IAsyncResult BeginProcessRequest(TransferBaseContext context, AsyncCallback cb, object extraData);
-        //
-        // 摘要:
-        //     在进程结束时，提供了异步处理 End 方法。
-        //
-        // 参数:
-        //   result:
-        //     System.IAsyncResult 包含有关状态的进程的信息。
-        void EndProcessRequest(IAsyncResult result);
+        Task ProcessRequestAsync(TransferBaseContext context);
     }
 }

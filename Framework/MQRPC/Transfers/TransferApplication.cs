@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
+using System.Threading.Tasks;
 
 
 /* ==============================================================================
@@ -13,7 +14,7 @@ using System;
  * ==============================================================================*/
 namespace Framework.MQRPC
 {
-    public class TransferApplication: ITransferAsyncHandler
+    public class TransferApplication: ITransferAsyncHandler, ITransferApplication<TransferBaseContext>
     {
         private TransferCollection _TransferCollection;
         /// <summary>
@@ -32,12 +33,14 @@ namespace Framework.MQRPC
             TransferContext context = new TransferContext(_TransferCollection);
             return context;
         }
-        public IAsyncResult BeginProcessRequest(TransferBaseContext context, AsyncCallback cb, object extraData)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void EndProcessRequest(IAsyncResult result)
+        /// <summary>
+        /// 创建对象
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="cb"></param>
+        /// <param name="extraData"></param>
+        /// <returns></returns>
+        public Task ProcessRequestAsync(TransferBaseContext context)
         {
             throw new NotImplementedException();
         }
