@@ -1,19 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Threading.Tasks;
 
 
 /* ==============================================================================
  * 格言:一只duck
- * 功能描述：RequestDelegate  
+ * 功能描述：ApiBaseController  
  * 创 建 者：Best_Hong
- * 创建日期：2019/7/9 9:39:24
+ * 创建日期：2019/7/12 11:52:56
  *
  *
  * 修改者：         修改时间：       修改说明:
  * ==============================================================================*/
-namespace Framework.MQRPC
+namespace Framework.MQApi
 {
-    public delegate Task RequestDelegate(TransferBaseContext context);
+    /// <summary>
+    /// api控制器的基类
+    /// </summary>
+    public class ApiBaseController : IApiController
+    {
+    }
 }

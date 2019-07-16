@@ -5,10 +5,24 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="MQRPC\Controllers\" />
-    <Folder Include="MQRPC\Models\" />
-    <Folder Include="MQRPC\Actions\" />
-    <Folder Include="MQRPC\Factorys\" />
+    <Compile Remove="MQRPC\Actions\**" />
+    <Compile Remove="MQRPC\Controllers\**" />
+    <Compile Remove="MQRPC\Models\**" />
+    <EmbeddedResource Remove="MQRPC\Actions\**" />
+    <EmbeddedResource Remove="MQRPC\Controllers\**" />
+    <EmbeddedResource Remove="MQRPC\Models\**" />
+    <None Remove="MQRPC\Actions\**" />
+    <None Remove="MQRPC\Controllers\**" />
+    <None Remove="MQRPC\Models\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="MQApi\Implements\" />
+    <Folder Include="MQApi\Cores\" />
+    <Folder Include="MQApi\Controllers\" />
+    <Folder Include="MQApi\Actions\" />
+    <Folder Include="MQApi\Models\" />
+    <Folder Include="MQApi\Routes\" />
   </ItemGroup>
 
   <ItemGroup>

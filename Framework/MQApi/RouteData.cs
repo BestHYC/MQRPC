@@ -13,7 +13,7 @@ using System.Text;
 * 修改时间:
 * 版本： @version 1.0
 =====================================================*/
-namespace Framework.MQRPC
+namespace Framework.MQApi
 {
     public class RouteData
     {

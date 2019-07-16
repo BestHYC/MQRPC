@@ -38,11 +38,11 @@ namespace Framework.MQRPC
             {
                 obj[i] = _provider.GetRequiredService(parameters[i].ParameterType);
             }
-            return  ()=> { startupType.GetMethod("Configure").Invoke(Activator.CreateInstance(startupType), obj); };
+            return  ()=> { startupType.GetMethod("Configure").Invoke(_provider.GetRequiredService(startupType), obj); };
         }
         public Action<IServiceCollection> GetConfigureServices(Type startupType)
         {
-            return service => { startupType.GetMethod("ConfigureServices").Invoke(Activator.CreateInstance(startupType), new Object[] { service }); };
+            return service => { startupType.GetMethod("ConfigureServices").Invoke(_provider.GetRequiredService(startupType), new Object[] { service }); };
         }
     }
 }
