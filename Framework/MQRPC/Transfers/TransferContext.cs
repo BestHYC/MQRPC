@@ -20,9 +20,9 @@ namespace Framework.MQRPC
             Response = new TransferResponse(collection);
             Context = this;
         }
-        public TransferRequest Request { get; }
-        public TransferResponse Response { get; }
-        public TransferContext Context { get; }
+        public override TransferRequest Request { get; }
+        public override TransferResponse Response { get; }
+        public override TransferContext Context { get; }
         //
         // 摘要:
         //     作为执行的管道链中的第一个事件发生，当 ASP.NET 的请求做出响应。

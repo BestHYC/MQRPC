@@ -15,6 +15,9 @@ using System.Text;
 =====================================================*/
 namespace Framework.MQApi
 {
+    /// <summary>
+    /// 通过路由值,取得具体的参数,调取controller,Action,Arguments
+    /// </summary>
     public class RouteData
     {
     }

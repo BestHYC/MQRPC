@@ -17,12 +17,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="MQApi\Implements\" />
     <Folder Include="MQApi\Cores\" />
     <Folder Include="MQApi\Controllers\" />
     <Folder Include="MQApi\Actions\" />
     <Folder Include="MQApi\Models\" />
-    <Folder Include="MQApi\Routes\" />
   </ItemGroup>
 
   <ItemGroup>

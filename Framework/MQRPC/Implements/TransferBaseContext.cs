@@ -6,6 +6,8 @@ namespace Framework.MQRPC
 {
     public abstract class TransferBaseContext
     {
-
+        public abstract TransferRequest Request { get; }
+        public abstract TransferResponse Response { get; }
+        public abstract TransferContext Context { get; }
     }
 }
