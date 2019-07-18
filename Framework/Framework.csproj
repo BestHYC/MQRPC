@@ -18,7 +18,6 @@
 
   <ItemGroup>
     <Folder Include="MQApi\Cores\" />
-    <Folder Include="MQApi\Controllers\" />
     <Folder Include="MQApi\Actions\" />
     <Folder Include="MQApi\Models\" />
   </ItemGroup>

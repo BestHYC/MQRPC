@@ -20,9 +20,17 @@ namespace Framework.MQApi
     /// </summary>
     public class UrlRoutingModule : IRoutingModule
     {
-        public UrlRoutingModule(TransferBaseContext context)
+        public void Init(TransferBaseContext context)
         {
-
+            RouteData routeData = RouteTable.Routes.GetRouteData(context);
+            if (routeData == null) return;
+            RequestContext request = new RequestContext()
+            {
+                Context = context,
+                RouteData = routeData
+            };
+            IApiHandler handler = routeData.RouteHandler.GetApiHandler(request);
+            handler.ProcessRequest();
         }
     }
 }

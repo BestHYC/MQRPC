@@ -4,8 +4,8 @@ using System.Text;
 
 namespace Framework.MQApi
 {
-    public interface IApiController
+    public interface IApiHandler
     {
-        void Execute(RequestContext requestContext);
+        void ProcessRequest();
     }
 }

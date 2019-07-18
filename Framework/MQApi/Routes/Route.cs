@@ -16,14 +16,37 @@ using Framework.MQRPC;
 namespace Framework.MQApi
 {
     /// <summary>
-    /// 通过路由,生成路由值
+    /// 通过路由,生成路由值, 并且初始化需要执行的解析模板
     /// </summary>
     public class Route : RouteBase
     {
+        public IRouteHandler RouteHandler { get; set; }
+        public Route()
+        {
+            RouteHandler = new MQRouteHandler();
+        }
         public String Url { get; set; }
+        /// <summary>
+        /// 初始化参数设置
+        /// </summary>
+        public RouteValueDictionary Defaults { get; set; }
         public override RouteData GetRouteData(TransferBaseContext httpContext)
         {
-            throw new NotImplementedException();
+            IDictionary<String, Object> values = null;
+            if(IsMatch(httpContext.Request.Path,out values))
+            {
+                RouteData routeData = new RouteData();
+                routeData.RouteHandler = this.RouteHandler;
+                foreach(var item in values)
+                {
+                    routeData.Values.Add(item.Key, item.Value.ToString());
+                }
+                routeData.QueryString.Add(httpContext.Request.QueryString);
+                routeData.Headers.Add(httpContext.Request.Headers);
+                routeData.Params.Add(httpContext.Request.Params);
+                return routeData;
+            }
+            return null;
         }
         /// <summary>
         /// 判断不同的路由比对是否正确
@@ -37,12 +60,25 @@ namespace Framework.MQApi
             values = new Dictionary<String, Object>();
             String[] strArray1 = requestUrl.Split('/');
             String[] strArray2 = this.Url.Split('/');
-            if (strArray1.Length != strArray2.Length) return false;
+            if (strArray1.Length != strArray2.Length 
+                && Defaults.Count != strArray2.Length
+                && (Defaults.Count+strArray1.Length != strArray2.Length)
+                ) return false;
             for (Int32 i = 0; i < strArray2.Length; i++)
             {
                 if (strArray2[i].StartsWith("{") && strArray2[i].EndsWith("}"))
                 {
-                    values.Add(strArray2[i].Trim("{}".ToCharArray()), strArray1[i]);
+                    String name = strArray2[i].Trim("{}".ToCharArray()).ToLower();
+                    String value = null;
+                    if (i >= strArray1.Length)
+                    {
+                        value = Defaults[name];
+                    }
+                    else
+                    {
+                        value = strArray1[i];
+                    }
+                    values.Add(name, value);
                 }
                 else
                 {
@@ -51,6 +87,10 @@ namespace Framework.MQApi
                 }
             }
             return true;
+        }
+        protected void GetToken()
+        {
+
         }
     }
 }

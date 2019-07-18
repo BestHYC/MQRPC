@@ -4,8 +4,8 @@ using System.Text;
 
 namespace Framework.MQApi
 {
-    public interface IApiController
+    public interface IRouteHandler
     {
-        void Execute(RequestContext requestContext);
+        IApiHandler GetApiHandler(RequestContext requestContext);
     }
 }

@@ -25,6 +25,7 @@ namespace Framework.MQApi
     /// </summary>
     public class RouteDictionary:Dictionary<String, RouteBase>
     {
+        
         public RouteDictionary()
         {
 

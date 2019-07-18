@@ -1,6 +1,7 @@
 ﻿
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Text;
 
 
@@ -20,5 +21,31 @@ namespace Framework.MQApi
     /// </summary>
     public class RouteData
     {
+        public IRouteHandler RouteHandler { get; set; }
+        public NameValueCollection Values { get; }
+        public NameValueCollection Params { get; }
+        public NameValueCollection QueryString { get; }
+        public NameValueCollection Headers { get; }
+        public RouteData()
+        {
+            Values = new NameValueCollection();
+            Params = new NameValueCollection();
+            QueryString = new NameValueCollection();
+            Headers = new NameValueCollection();
+        }
+        public String Controller
+        {
+            get
+            {
+                return this.Values.Get("controller");
+            }
+        }
+        public String ActionName
+        {
+            get
+            {
+                return this.Values.Get("action");
+            }
+        }
     }
 }
