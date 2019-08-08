@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.IO;
 using System.Text;
 
 
@@ -33,18 +34,18 @@ namespace Framework.MQRPC
         /// <summary>
         /// Uri请求参数处理
         /// </summary>
-        public NameValueCollection QueryParams { get; set; }
+        public Stream QueryParams { get; set; }
         /// <summary>
         /// 内部字段处理,以dic存储,即使后期传递文件方式
         /// </summary>
-        public NameValueCollection RequestContent { get; set; }
+        public Stream RequestContent { get; set; }
         /// <summary>
         /// 内部字段处理,以dic存储,即使后期传递文件方式
         /// </summary>
-        public NameValueCollection ResponseContent { get; set; }
+        public Stream ResponseContent { get; set; }
         /// <summary>
         /// 请求头参数
         /// </summary>
-        public NameValueCollection Headers { get; set; }
+        public Stream Headers { get; set; }
     }
 }

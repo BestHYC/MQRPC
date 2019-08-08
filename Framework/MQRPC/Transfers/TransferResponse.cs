@@ -25,6 +25,6 @@ namespace Framework.MQRPC
         {
             _collection = collection;
         }
-        public Stream OutputStream { get; }
+        public Object OutputObejct { get; set; }
     }
 }

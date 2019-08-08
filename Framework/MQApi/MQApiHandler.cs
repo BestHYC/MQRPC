@@ -27,6 +27,8 @@ namespace Framework.MQApi
         {
             String controllername = RequestContext.RouteData.Controller;
             IApiController controller = ControllerFactory.CreateController(RequestContext, controllername);
+            if (controller == null) return;
+            controller.Execute(RequestContext);
         }
     }
 }
