@@ -24,12 +24,7 @@ namespace Framework.Clones
         }
         public static T DeepClone<T>(this Object obj)
         {
-            BinaryFormatter BF = new BinaryFormatter();
-            MemoryStream memStream = new MemoryStream();
-            BF.Serialize(memStream, obj);
-            memStream.Flush();
-            memStream.Position = 0;
-            return (T)BF.Deserialize(memStream);
+            return (T)DeepClone(obj);
         }
         public static Object DeepClone(this Object obj)
         {
