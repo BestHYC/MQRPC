@@ -18,9 +18,8 @@ namespace Framework.MQRPC
     public class MQServerFactory : IServerFactory
     {
         private readonly IConnectionFactory _factory;
-        public MQServerFactory(IConnectionFactory factory)
+        public MQServerFactory()
         {
-            _factory = factory;
         }
         public ITransferServer Create()
         {
